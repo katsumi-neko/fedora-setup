@@ -41,7 +41,7 @@ skip_if_unavailable=True
 
 `sudo dnf install nvidia-query-resource-opengl nvidia-texture-tools`
 
-`sudo dnf install freeglut-devel libX11-devel libXi-devel libXmu-devel make mesa-libGLU-devel freeimage-devel glfw --skip-unavailable`
+`sudo dnf install freeglut-devel libX11-devel libXi-devel libXmu-devel make mesa-libGLU-devel freeimage-devel glfw`
 
 ## Replace Fedora Flatpak with Flathub
 `flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo`
