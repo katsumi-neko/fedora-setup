@@ -61,5 +61,5 @@ defaultyes=True
 * the NetworkManager-wait-online.service can sometimes delay bootup by up to 10-15 seconds
 `sudo systemctl disable NetworkManager-wait-online.service`
 
-# The guide to install the CachyOS kernel on Fedora (optional)
+## The guide to install the CachyOS kernel on Fedora (optional)
 https://github.com/CachyOS/copr-linux-cachyos
