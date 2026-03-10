@@ -69,11 +69,14 @@ skip_if_unavailable=True
 * the NetworkManager-wait-online.service can sometimes delay bootup by up to 10-15 seconds
 `sudo systemctl disable NetworkManager-wait-online.service`
 
+
 ## Final words
 * If you are on an Nvidia system, it is good practice to wait 5 minutes after installing updates, to allow the akmods to finish running in the background (otherwise you might end up booting to a black screen!)
 * It's good practice to stay relatively up to date, you will run into fewer issues this way. I personally update once per week, and have KDE setup to notify me weekly to update.
 * It's a good idea to check out the official Fedora documentation and learn how to manage and use your system. This is just a guide to help users get up and running the same way I have on my system.
 * If you have any issues while following this guide, feel free to open an issue and I will do my best to help/resolve it!
 
-## The guide to install the CachyOS kernel on Fedora (optional)
+
+## Guide to setup CachyOS kernel on Fedora
+* This is an unofficial kernel and not recommended by Fedora project. I put this here because this is what I personally use, but if you run into issues, try booting into one of the stock kernels before asking for help in the Fedora community. 
 https://github.com/CachyOS/copr-linux-cachyos
