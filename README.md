@@ -1,5 +1,6 @@
 # fedora-setup
-My personal list of commands to setup fedora on an Nvidia system. 
+My personal list of commands to setup fedora on an Nvidia or AMD GPU system.
+ * Skip the Nvidia steps if you have an AMD GPU
 
 ## Quality of life DNF options
 * This is what my `/etc/dnf/dnf.conf` looks like.
@@ -12,14 +13,14 @@ installonly_limit=3
 skip_if_unavailable=True
 ```
 
+## Install RPM Fusion repositories
+`sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm`
+
 ## Update the system
 * Go into KDE Discover or GNOME Software Center and install all the latest updates.
 * Alternatively, you can run `sudo dnf update` to update from the terminal. 
 
-## Install RPM Fusion repositories
-`sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm`
-
-## Install Nvidia Drivers 
+## Install Nvidia GPU Drivers 
 `sudo dnf install akmod-nvidia xorg-x11-drv-nvidia-cuda xorg-x11-drv-nvidia-cuda-libs libva-nvidia-driver libva-utils vdpauinfo vulkan`
 
 `sudo dnf mark user akmod-nvidia`
@@ -30,21 +31,25 @@ skip_if_unavailable=True
 `sudo akmods --rebuild`
 
 ## Install extra codecs
-`sudo dnf install sox sox-plugins-nonfree svt-av1 gstreamer1-svt-av1 gstreamer1-svt-vp9 svt-vp9 libheif libheif-freeworld rav1e dav1d vkd3d-compiler`
+`sudo dnf install sox sox-plugins-nonfree svt-av1 gstreamer1-svt-vp9 svt-vp9 libheif libheif-freeworld rav1e dav1d vkd3d-compiler`
 
 `sudo dnf swap ffmpeg-free ffmpeg --allowerasing`
 
 `sudo dnf update @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin`
 
-## Install specific Nvidia codecs
+## Install Nvidia specific codecs
 `sudo dnf install libva-nvidia-driver.{i686,x86_64} libva-utils vdpauinfo`
 
 `sudo dnf install nvidia-query-resource-opengl nvidia-texture-tools`
 
 `sudo dnf install freeglut-devel libX11-devel libXi-devel libXmu-devel make mesa-libGLU-devel freeimage-devel glfw`
 
+## Install AMD GPU specific codecs
+`sudo dnf swap mesa-va-drivers mesa-va-drivers-freeworld`
+`sudo dnf swap mesa-va-drivers.i686 mesa-va-drivers-freeworld.i686`
+
 ## Replace Fedora Flatpak with Flathub
-`flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo`
+`sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo`
 
 `flatpak remote-modify --no-filter --enable flathub`
 
