@@ -10,7 +10,6 @@ max_parallel_downloads=10
 defaultyes=True
 installonly_limit=3
 skip_if_unavailable=True
-
 ```
 
 ## Update the system
