@@ -22,6 +22,7 @@ skip_if_unavailable=True
 
 ## Install Nvidia GPU Drivers 
 `sudo dnf install akmod-nvidia xorg-x11-drv-nvidia-cuda xorg-x11-drv-nvidia-cuda-libs libva-nvidia-driver libva-utils vdpauinfo vulkan`
+* It is recommended to wait up to 5 minutes before proceeding/rebooting, the akmod needs to build and it is running in the background.
 
 `sudo dnf mark user akmod-nvidia`
 
@@ -29,6 +30,7 @@ skip_if_unavailable=True
 `sudo sh -c 'echo "%_with_kmod_nvidia_open 1" > /etc/rpm/macros.nvidia-kmod'`
 
 `sudo akmods --rebuild`
+* Same as above, it will take up to 5 minutes for the akmod to rebuild. Do not reboot
 
 ## Install extra codecs
 `sudo dnf install sox sox-plugins-nonfree svt-av1 gstreamer1-svt-vp9 svt-vp9 libheif libheif-freeworld rav1e dav1d vkd3d-compiler`
@@ -66,6 +68,12 @@ skip_if_unavailable=True
 ## Fix slow bootup
 * the NetworkManager-wait-online.service can sometimes delay bootup by up to 10-15 seconds
 `sudo systemctl disable NetworkManager-wait-online.service`
+
+## Final words
+* If you are on an Nvidia system, it is good practice to wait 5 minutes after installing updates, to allow the akmods to finish running in the background (otherwise you might end up booting to a black screen!)
+* It's good practice to stay relatively up to date, you will run into fewer issues this way. I personally update once per week, and have KDE setup to notify me weekly to update.
+* It's a good idea to check out the official Fedora documentation and learn how to manage and use your system. This is just a guide to help users get up and running the same way I have on my system.
+* If you have any issues while following this guide, feel free to open an issue and I will do my best to help/resolve it!
 
 ## The guide to install the CachyOS kernel on Fedora (optional)
 https://github.com/CachyOS/copr-linux-cachyos
