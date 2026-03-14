@@ -1,12 +1,10 @@
 # fedora-setup
-My personal list of commands to setup fedora on an Nvidia or AMD GPU system.
- * Skip the Nvidia steps if you have an AMD GPU
+My personal list of commands to setup fedora on an Nvidia system. 
 
 ## Quality of life DNF options
 * This is what my `/etc/dnf/dnf.conf` looks like.
 ```
 [main]
-fastestmirror=True
 max_parallel_downloads=10
 defaultyes=True
 installonly_limit=3
@@ -20,17 +18,14 @@ skip_if_unavailable=True
 * Go into KDE Discover or GNOME Software Center and install all the latest updates.
 * Alternatively, you can run `sudo dnf update` to update from the terminal. 
 
-## Install Nvidia GPU Drivers 
+## Install Nvidia Drivers 
 `sudo dnf install akmod-nvidia xorg-x11-drv-nvidia-cuda xorg-x11-drv-nvidia-cuda-libs libva-nvidia-driver libva-utils vdpauinfo vulkan`
-* It is recommended to wait up to 5 minutes before proceeding/rebooting, the akmod needs to build and it is running in the background.
 
 `sudo dnf mark user akmod-nvidia`
 
-## Swap Nvidia Drivers to open modules
-`sudo sh -c 'echo "%_with_kmod_nvidia_open 1" > /etc/rpm/macros.nvidia-kmod'`
+* If you have setup disk encryption on your system, you will want to run the following command in order to load the nvidia driver during boot, in order to see your password prompt:
 
-`sudo akmods --rebuild`
-* Same as above, it will take up to 5 minutes for the akmod to rebuild. Do not reboot
+`sudo grubby --update-kernel=ALL --args='plymouth.use-simpledrm=1'`
 
 ## Install extra codecs
 `sudo dnf install sox sox-plugins-nonfree svt-av1 gstreamer1-svt-vp9 svt-vp9 libheif libheif-freeworld rav1e dav1d vkd3d-compiler`
@@ -39,7 +34,7 @@ skip_if_unavailable=True
 
 `sudo dnf update @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin`
 
-## Install Nvidia specific codecs
+## Install specific Nvidia codecs
 `sudo dnf install libva-nvidia-driver.{i686,x86_64} libva-utils vdpauinfo`
 
 `sudo dnf install nvidia-query-resource-opengl nvidia-texture-tools`
@@ -55,8 +50,6 @@ skip_if_unavailable=True
 
 `flatpak remote-modify --no-filter --enable flathub`
 
-`flatpak install --reinstall flathub $(flatpak list --app-runtime=org.fedoraproject.Platform --columns=application | tail -n +1 )`
-
 `flatpak remote-delete fedora`
 
 ## lib.so fix
@@ -69,14 +62,6 @@ skip_if_unavailable=True
 * the NetworkManager-wait-online.service can sometimes delay bootup by up to 10-15 seconds
 `sudo systemctl disable NetworkManager-wait-online.service`
 
-
-## Final words
-* If you are on an Nvidia system, it is good practice to wait 5 minutes after installing updates, to allow the akmods to finish running in the background (otherwise you might end up booting to a black screen!)
-* It's good practice to stay relatively up to date, you will run into fewer issues this way. I personally update once per week, and have KDE setup to notify me weekly to update.
-* It's a good idea to check out the official Fedora documentation and learn how to manage and use your system. This is just a guide to help users get up and running the same way I have on my system.
-* If you have any issues while following this guide, feel free to open an issue and I will do my best to help/resolve it!
-
-
-## Guide to setup CachyOS kernel on Fedora
-* This is an unofficial kernel and not recommended by Fedora project. I put this here because this is what I personally use, but if you run into issues, try booting into one of the stock kernels before asking for help in the Fedora community. 
+## The guide to install the CachyOS kernel on Fedora (optional)
+* This step is not recommended for most users, this is just the kernel I use on my machine for better 1% lows in specific games that benefit from it. 
 https://github.com/CachyOS/copr-linux-cachyos
