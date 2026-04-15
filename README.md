@@ -14,6 +14,8 @@ skip_if_unavailable=True
 ## Install RPM Fusion repositories
 `sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm`
 
+`sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1`
+
 ## Update the system
 * Go into KDE Discover or GNOME Software Center and install all the latest updates.
 * Alternatively, you can run `sudo dnf update` to update from the terminal. 
