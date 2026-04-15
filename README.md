@@ -45,6 +45,7 @@ skip_if_unavailable=True
 
 ## Install AMD GPU specific codecs
 `sudo dnf swap mesa-va-drivers mesa-va-drivers-freeworld`
+
 `sudo dnf swap mesa-va-drivers.i686 mesa-va-drivers-freeworld.i686`
 
 ## Replace Fedora Flatpak with Flathub
