@@ -1,6 +1,6 @@
 # fedora-setup
-My personal list of commands to setup fedora on an Nvidia system. 
-This is not intended to be used by most people, instead use this guide: https://github.com/katsumi-neko/fedora-guide-docs
+* My personal list of commands to setup fedora on an Nvidia system. 
+* This is not intended to be used by most people, instead use this guide: https://github.com/katsumi-neko/fedora-guide-docs
 
 ## Quality of life DNF options
 * This is what my `/etc/dnf/dnf.conf` looks like.
